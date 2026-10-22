@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lay Kimhour – Business Economics Student & Customs Documentation Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1230;--panel:rgba(20,32,74,.72);--ink:#eef1f8;--muted:#aab4cf;--line:rgba(255,255,255,.14);--gold:#e0b84f;--node:224,184,79;--link:150,170,230;--on-gold:#14213d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#eef1f8;--panel:rgba(255,255,255,.82);--ink:#14213d;--muted:#4b5673;--line:rgba(20,33,61,.15);--gold:#a97b14;--node:169,123,20;--link:60,80,140;--on-gold:#fff;color-scheme:light}}
+:root[data-theme="light"]{--bg:#eef1f8;--panel:rgba(255,255,255,.82);--ink:#14213d;--muted:#4b5673;--line:rgba(20,33,61,.15);--gold:#a97b14;--node:169,123,20;--link:60,80,140;--on-gold:#fff;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Source Sans 3",system-ui,sans-serif}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:auto}
+main,header,footer{position:relative;z-index:1}
+h1,h2,h3{font-family:"Barlow Condensed","Arial Narrow",sans-serif;margin:0;line-height:1.02}
+a{color:inherit}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:5;backdrop-filter:blur(10px);background:var(--panel);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;gap:22px;flex-wrap:wrap;align-items:center;height:auto;padding-top:12px;padding-bottom:12px;font-weight:600;font-size:15px}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--ink)}
+nav b{font:700 22px "Barlow Condensed",sans-serif;margin-right:auto;color:var(--gold)}
+.hero{min-height:88vh;display:flex;align-items:center;padding:60px 0}
+h1{font-size:clamp(72px,16vw,180px);font-weight:700;letter-spacing:.005em}
+h1 span{display:block;color:var(--gold)}
+.role-line{font:600 clamp(22px,3.4vw,32px)/1.2 "Barlow Condensed",sans-serif;margin:18px 0 8px;min-height:1.3em}
+.cursor{display:inline-block;width:3px;height:.9em;background:var(--gold);margin-left:4px;vertical-align:-.1em;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+.lead{max-width:36em;font-size:19px;color:var(--muted);margin:0 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 24px;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid var(--gold);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--gold);color:var(--on-gold)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+.stats div{border-left:3px solid var(--gold);padding-left:14px}
+.stats b{font:700 46px/1 "Barlow Condensed",sans-serif;display:block}
+.stats small{color:var(--muted);font-size:14px}
+section{padding:60px 0}
+h2{font-size:clamp(38px,6vw,56px);margin-bottom:8px}
+.sub{color:var(--muted);max-width:40em;margin:0 0 30px}
+.card{background:var(--panel);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:6px;padding:22px 24px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.chart{overflow-x:auto}
+.chart-in{min-width:640px;display:grid;grid-template-columns:190px repeat(9,1fr);row-gap:12px;align-items:center}
+.yr{font-size:13px;color:var(--muted);border-left:1px solid var(--line);padding-left:6px}
+.rn{font-weight:600;font-size:15px}
+.bar{height:22px;border-radius:3px;background:var(--gold);transform-origin:left;animation:grow 1.4s cubic-bezier(.2,.7,.2,1) both}
+.bar.past{background:var(--muted);opacity:.6}
+@keyframes grow{from{transform:scaleX(0)}}
+.legend{font-size:14px;color:var(--muted);margin:14px 0 0}
+.roles{display:grid;gap:16px}
+.role{border-left:6px solid var(--gold)}
+.role h3{font-size:30px}.meta{color:var(--gold);font-weight:600;margin:4px 0 10px}
+.role p{margin:0;max-width:64ch}
+.fit{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fit h3{font-size:26px;margin-bottom:8px}.fit p{margin:0;color:var(--muted);font-size:16px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;padding:0;list-style:none;margin:0 0 26px}
+.pills li{border:1px solid var(--line);background:var(--panel);padding:6px 14px;border-radius:99px;font-size:15px}
+h3.sm{font-size:24px;margin-bottom:12px}
+.lang{margin:0 0 14px}.lang div{display:flex;justify-content:space-between;font-weight:600}
+.meter{height:8px;border-radius:4px;background:var(--line);margin-top:6px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--gold);transform-origin:left;animation:grow 1.6s .3s both}
+.edu div{padding:12px 0;border-bottom:1px solid var(--line)}
+.edu b{display:block}.edu span{color:var(--muted);font-size:15px}
+.goal h2{max-width:14em}.goal p{max-width:44em;font-size:19px;color:var(--muted);margin:0}
+.contact a{display:block;font-size:clamp(20px,3.4vw,30px);font-weight:600;margin:6px 0;text-decoration-color:var(--gold)}
+footer{padding:20px 0 56px;color:var(--muted);font-size:15px}
+.tg{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:6;background:var(--gold);color:var(--on-gold);border:0;border-radius:99px;padding:10px 16px;font:600 14px inherit;font-family:inherit;cursor:pointer}
+@media (max-width:760px){.two,.fit{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.hero{min-height:auto}nav .wrap{gap:14px}nav b{width:100%}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar,.meter i,.cursor{animation:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<nav aria-label="Main"><div class="wrap"><b>LAY KIMHOUR</b><a href="#about">About</a><a href="#career">Career</a><a href="#work">Experience</a><a href="#sports">Why me</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div></nav>
+<header class="hero"><div class="wrap">
+ <h1>Lay <span>Kimhour</span></h1>
+ <p class="role-line" id="type" aria-live="off">Customs documentation specialist<span class="cursor"></span></p>
+ <p class="lead">Business Economics student in Cambodia with eight years in customs and excise. I keep records accurate, coordinate people and teach English, and I’m ready to bring that to a sports company.</p>
+ <div class="btns"><a class="btn primary" href="#contact">Get in touch</a><a class="btn" href="#work">See my experience</a></div>
+ <div class="stats">
+  <div><b data-n="8">8</b><small>years in customs and excise</small></div>
+  <div><b data-n="5">5</b><small>roles held</small></div>
+  <div><b data-n="4">4</b><small>institutions studied at</small></div>
+  <div><b data-n="2">2</b><small>languages spoken</small></div>
+ </div>
+</div></header>
+
+<main>
+<section id="about"><div class="wrap two">
+ <div><h2>About me</h2><p class="sub">I’m in my 4th year of Business Economics at the National University of Management, with working knowledge of finance, accounting and business management.</p></div>
+ <div class="card"><p style="margin:0">My work is about getting documents right: checking tax papers, accepting cargo against customs rules, and writing up community activities for an NGO. I’m responsible, I learn quickly, and I work well with people from airline staff to village leaders to students.</p></div>
+</div></section>
+
+<section id="career" style="padding-top:0"><div class="wrap">
+ <h2>Career at a glance</h2><p class="sub">Several roles ran side by side. Bars show the years each one covers.</p>
+ <div class="card chart"><div class="chart-in" role="img" aria-label="Timeline: Clerk of Customs 2018 to present; Community Accountability Facilitator 2022 to present; Part-Time Teacher 2024 to present; Cargo Acceptance Officer 2025 to 2026; Environmental Awareness Campaigner 2026 to present">
+  <span></span><span class="yr">2018</span><span class="yr">2019</span><span class="yr">2020</span><span class="yr">2021</span><span class="yr">2022</span><span class="yr">2023</span><span class="yr">2024</span><span class="yr">2025</span><span class="yr">2026</span>
+  <span class="rn">Clerk of Customs</span><span class="bar" style="grid-column:2/11"></span>
+  <span class="rn">Community Facilitator</span><span class="bar" style="grid-column:6/11;animation-delay:.15s"></span>
+  <span class="rn">Part-Time Teacher</span><span class="bar" style="grid-column:8/11;animation-delay:.3s"></span>
+  <span class="rn">Cargo Acceptance</span><span class="bar past" style="grid-column:9/11;animation-delay:.45s"></span>
+  <span class="rn">Environmental Campaigner</span><span class="bar" style="grid-column:10/11;animation-delay:.6s"></span>
+ </div></div>
+ <p class="legend">Gold bars are current roles. The grey bar is a role that has ended.</p>
+</div></section>
+
+<section id="work" style="padding-top:0"><div class="wrap">
+ <h2>Experience</h2><p class="sub">What I did in each role.</p>
+ <div class="roles">
+  <article class="card role"><h3>Clerk of Customs</h3><div class="meta">General Department of Customs & Excise, 2018 to present</div><p>Manage income and expense records and keep office documents organized. Prepare and check tax documents so the information is correct, and support daily office work.</p></article>
+  <article class="card role"><h3>Community Accountability Facilitator</h3><div class="meta">SOVANN PHOUM NGO, 2022 to present</div><p>Work with communities to collect information and support social accountability activities. Prepare reports and documents, and coordinate with community members and stakeholders to support transparency and cooperation.</p></article>
+  <article class="card role"><h3>Part-Time Teacher</h3><div class="meta">Bandos Panha School (BPS), 2024 to present</div><p>Teach English, build structured lesson plans, track students’ academic progress and keep the classroom a positive place to learn.</p></article>
+  <article class="card role"><h3>Cargo Acceptance Officer</h3><div class="meta">Techo International Airport, 2025 to 2026</div><p>Checked cargo documents and accepted shipments. Worked with airlines and cargo staff so every document was correct and followed customs rules, and kept cargo records current.</p></article>
+  <article class="card role"><h3>Environmental Awareness Campaigner</h3><div class="meta">Youth Council of Cambodia, 2026 to present</div><p>Raise awareness about plastic bag use, packaging and proper waste disposal. Monitor work in communes and sangkats to keep these areas green and clean.</p></article>
+ </div>
+</div></section>
+
+<section id="sports" style="padding-top:0"><div class="wrap">
+ <h2>What I bring to a sports company</h2><p class="sub">Sports organizations run on paperwork, budgets, schedules and people. These are my strengths in each.</p>
+ <div class="fit">
+  <div class="card"><h3>Records and finance</h3><p>Income and expense tracking, tax document checks and accurate reporting, backed by a Business Economics degree in progress.</p></div>
+  <div class="card"><h3>Rules and compliance</h3><p>Years of checking documents against customs rules means contracts, permits and shipments of equipment get handled correctly.</p></div>
+  <div class="card"><h3>People and teaching</h3><p>Teaching, community work and airline coordination have trained me to explain clearly and work with many kinds of people.</p></div>
+ </div>
+</div></section>
+
+<section id="skills" style="padding-top:0"><div class="wrap two">
+ <div>
+  <h2>Skills</h2>
+  <h3 class="sm">Professional</h3>
+  <ul class="pills"><li>Records and reporting</li><li>Customs documentation</li><li>Cargo processing</li><li>Finance and accounting basics</li><li>Lesson planning</li><li>Stakeholder coordination</li></ul>
+  <h3 class="sm">Personal</h3>
+  <ul class="pills"><li>Patient</li><li>Teamwork</li><li>Hard working</li><li>Openness</li><li>Strong communication</li></ul>
+  <h3 class="sm">Tools</h3>
+  <ul class="pills"><li>Microsoft Word</li><li>Microsoft Excel</li><li>Microsoft PowerPoint</li></ul>
+  <h3 class="sm">Languages</h3>
+  <div class="lang"><div><span>Khmer</span><span>Native</span></div><div class="meter"><i style="width:100%"></i></div></div>
+  <div class="lang"><div><span>English</span><span>Intermediate</span></div><div class="meter"><i style="width:60%"></i></div></div>
+ </div>
+ <div class="edu">
+  <h2>Education</h2><p class="sub">Studying and working at the same time.</p>
+  <div><b>National University of Management</b><span>Business Economics, 2024 to present</span></div>
+  <div><b>Polytechnic Institute Techo Sen</b><span>High Diploma, graduated 2025</span></div>
+  <div><b>Australian Centre for Education</b><span>Student, 2023 to 2025</span></div>
+  <div><b>Beitel International School</b><span>Student, 2019 to 2022</span></div>
+ </div>
+</div></section>
+
+<section class="goal"><div class="wrap"><div class="card"><h2>Looking for a role in sports</h2>
+ <p>I want to join a sports company where I can use my business economics, finance and document management skills. I’m dependable, quick to learn, and ready to support the team and help the company grow.</p></div></div></section>
+</main>
+
+<footer id="contact"><div class="wrap contact">
+ <h2>Contact</h2>
+ <a href="tel:+85581869669">(+855) 81 869 669</a>
+ <a href="mailto:kimhour1909@gmail.com">kimhour1909@gmail.com</a>
+ <p>Kandal Stueng, Kandal, Cambodia. References are available on request.</p>
+</div></footer>
+<button class="tg" id="tg" type="button" aria-label="Switch light or dark theme">Theme</button>
+
+<script>
+(function(){
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var c=document.getElementById('bg'),x=c.getContext('2d'),W,H,P=[],m={x:-999,y:-999},DPR=Math.min(devicePixelRatio||1,2);
+function rgb(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function size(){W=innerWidth;H=innerHeight;c.width=W*DPR;c.height=H*DPR;x.setTransform(DPR,0,0,DPR,0,0);
+ var n=Math.round(Math.min(90,W*H/16000));P=[];for(var i=0;i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.6+.8})}
+function draw(){
+ var nc=rgb('--node'),lc=rgb('--link');x.clearRect(0,0,W,H);
+ for(var i=0;i<P.length;i++){var a=P[i];
+  if(!reduce){a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;
+   var dx=a.x-m.x,dy=a.y-m.y,d=dx*dx+dy*dy;if(d<14000){a.x+=dx*.01;a.y+=dy*.01}}
+  for(var j=i+1;j<P.length;j++){var b=P[j],ex=a.x-b.x,ey=a.y-b.y,e=ex*ex+ey*ey;
+   if(e<20000){x.strokeStyle='rgba('+lc+','+(.35*(1-e/20000))+')';x.lineWidth=1;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+  x.fillStyle='rgba('+nc+',.8)';x.beginPath();x.arc(a.x,a.y,a.r,0,6.283);x.fill()}
+ if(!reduce)requestAnimationFrame(draw)}
+addEventListener('resize',function(){size();if(reduce)draw()});
+addEventListener('pointermove',function(e){m.x=e.clientX;m.y=e.clientY});
+size();draw();
+/* typing roles */
+var t=document.getElementById('type'),words=['Customs documentation specialist','Business Economics student','English teacher','Community accountability facilitator'],wi=0,ci=0,del=false;
+function tick(){var w=words[wi];ci+=del?-1:1;t.firstChild.nodeValue=w.slice(0,ci);
+ var d=del?35:70;if(!del&&ci===w.length){del=true;d=1600}else if(del&&ci===0){del=false;wi=(wi+1)%words.length;d=350}setTimeout(tick,d)}
+if(!reduce){t.firstChild.nodeValue='';setTimeout(tick,600)}
+/* counters */
+if(!reduce)document.querySelectorAll('[data-n]').forEach(function(el){var n=+el.dataset.n,s=null;
+ function f(ts){s=s||ts;var p=Math.min((ts-s)/1200,1);el.textContent=Math.round(n*p);if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)});
+/* theme toggle */
+document.getElementById('tg').onclick=function(){var r=document.documentElement,dark=getComputedStyle(r).colorScheme.indexOf('light')<0;
+ r.setAttribute('data-theme',dark?'light':'dark');if(reduce)draw()};
+})();
+</script>
+</body>
+</html>
