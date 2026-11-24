@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signage</title>
+<style>
+:root{--bg:#f1f4fa;--card:#fff;--tx:#0f1b3d;--mu:#6b7794;--bd:#e3e8f2;--ac:#2f5bea;--ac2:#eaf0ff;--ok:#12a150;--okbg:#dff7e9;--bad:#a3adc4;--dg:#e5484d;--dgbg:#fde8e9;--sh:0 1px 2px rgba(15,27,61,.04),0 6px 20px rgba(15,27,61,.06)}
+@media(prefers-color-scheme:dark){:root{--bg:#0a0f1f;--card:#121a30;--tx:#e8edfa;--mu:#8e9ab8;--bd:#222d4a;--ac:#6c8cff;--ac2:#1a2650;--ok:#4ade80;--okbg:#0f2c1e;--bad:#56627e;--dg:#ff7a7f;--dgbg:#3a1a20;--sh:0 1px 2px rgba(0,0,0,.4),0 8px 22px rgba(0,0,0,.3)}}
+*{box-sizing:border-box}html,body{margin:0;height:100%}body{background:var(--bg);color:var(--tx);font:14px/1.45 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.shell{display:flex;min-height:100vh}
+.sidebar{width:236px;flex:none;background:linear-gradient(180deg,#12206b,#0a1240);color:#c7d2f5;padding:20px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;padding:2px 8px 18px;color:#fff}.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#5b8cff,#2f5bea);display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 4px 14px rgba(47,91,234,.5)}
+.brand b{font-size:16px;letter-spacing:-.01em;display:block;line-height:1.1}.brand small{color:#8fa0d6;font-size:11px}
+.nav{display:flex;flex-direction:column;gap:4px}
+.nav button{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:transparent;border:0;color:#b6c3ee;padding:10px 12px;border-radius:10px;font:inherit;font-weight:550;cursor:pointer}
+.nav button svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.nav button:hover{background:rgba(255,255,255,.07);color:#fff}.nav button.on{background:#2f5bea;color:#fff;box-shadow:0 4px 14px rgba(47,91,234,.45)}
+.sbfoot{margin-top:auto;font-size:12px;color:#8fa0d6;padding:8px}.sbfoot button{margin-top:8px;width:100%;background:rgba(255,255,255,.08);border:0;color:#dbe4ff;padding:8px;border-radius:9px;cursor:pointer;font:inherit}
+.main{flex:1;min-width:0;padding:22px 28px 40px}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:18px}.top h1{font-size:22px;margin:0;font-weight:750;letter-spacing:-.02em}
+#status{margin-left:auto;font-size:12.5px;color:var(--mu);background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:6px 14px;max-width:46%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.view{display:none}.view.on{display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;box-shadow:var(--sh);display:flex;gap:14px;align-items:center}
+.ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex:none}.ic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ic.b{background:#e8efff;color:#2f5bea}.ic.g{background:#dff7e9;color:#12a150}.ic.v{background:#efe8ff;color:#7a45e5}.ic.r{background:#ffe9ea;color:#e5484d}
+.stat span{display:block;color:var(--mu);font-size:12.5px;font-weight:550}.stat b{display:block;font-size:28px;line-height:1.1;letter-spacing:-.02em}.stat i{font-style:normal;color:var(--mu);font-size:11.5px}
+.g3{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;box-shadow:var(--sh);margin:0 0 14px}.g3 .card{margin:0}
+.ch{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}.ch h2,.card>h2{font-size:15px;margin:0 0 12px;font-weight:700}.ch h2{margin:0}.sp{flex:1}.mu{color:var(--mu);font-size:12.5px}
+.donutwrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.lg div{display:flex;align-items:center;gap:8px;font-size:13px;margin:6px 0;color:var(--mu)}.lg b{color:var(--tx);margin-left:auto;padding-left:14px}.lg i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.ai{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--bd);font-size:13px}.ai:last-child{border:0}.ai .ad{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:none}.ai i{margin-left:auto;font-style:normal;color:var(--mu);font-size:11.5px;white-space:nowrap}
+.hr{display:flex;align-items:center;gap:10px;margin:11px 0;font-size:13px}.hr span{width:84px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hr em{font-style:normal;color:var(--mu);font-size:12px;width:34px;text-align:right}.hb{flex:1;height:8px;background:var(--bd);border-radius:5px;overflow:hidden}.hb i{display:block;height:100%;background:linear-gradient(90deg,#5b8cff,#2f5bea);border-radius:5px}
+button,input,select,textarea{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:8px 13px;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--ac2)}
+.card button,.acts button{cursor:pointer;font-weight:600}.card button:hover{background:var(--ac2);border-color:var(--ac)}
+button.p{background:var(--ac);border-color:var(--ac);color:#fff}.card button.p:hover{background:var(--ac);filter:brightness(1.1)}button.d,.d{color:var(--dg)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(124px,1fr));gap:10px}
+.tv{border:1px solid var(--bd);border-radius:12px;padding:11px;cursor:pointer;user-select:none;background:var(--card);transition:all .15s}
+.tv:hover{border-color:var(--ac);transform:translateY(-1px)}.tv.sel{border-color:var(--ac);background:var(--ac2);box-shadow:0 0 0 2px var(--ac) inset}
+.tvh{display:flex;align-items:center;gap:7px;font-weight:650;font-size:13px}.tvn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tvm{font-size:11.5px;color:var(--mu);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--dg);box-shadow:0 0 0 3px var(--dgbg)}.tv.on .dot{background:var(--ok);box-shadow:0 0 0 3px var(--okbg)}.tv:not(.on) .tvn{color:var(--mu)}
+.tag{display:inline-block;font-size:10.5px;font-weight:650;padding:1px 7px;border-radius:999px;background:var(--ac2);color:var(--ac);margin-left:4px}
+#dz{border:1.5px dashed var(--bd);border-radius:14px;padding:14px;transition:all .15s}#dz.drag{border-color:var(--ac);background:var(--ac2)}
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:12px}
+.m{border:1px solid var(--bd);border-radius:12px;padding:7px;font-size:12px;overflow:hidden;background:var(--card)}.m .th{height:84px;background:var(--bg);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:6px;font-weight:700;color:var(--mu);font-size:11px}
+.m .th img,.m .th video{max-width:100%;max-height:100%}.m span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ckl{display:flex;gap:6px;align-items:center;font-size:12px;margin-bottom:5px;cursor:pointer}.ckl input{padding:0;width:auto}.m button{width:100%;margin-top:6px;padding:4px;font-size:12px}
+.bar{height:6px;background:var(--bd);border-radius:3px;margin:4px 0 8px}.bar i{display:block;height:100%;background:var(--ac);border-radius:3px;width:0}
+.slide{border:1px solid var(--bd);border-radius:12px;padding:12px;margin:10px 0;display:grid;gap:8px;grid-template-columns:1fr 1fr;background:var(--bg)}.full{grid-column:1/-1}
+input[type=color]{padding:2px;height:38px;width:100%}textarea{width:100%;min-height:56px;resize:vertical}input,select{min-width:0}
+code{background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:1px 6px;font-size:12px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.qrwrap{display:flex;gap:20px;flex-wrap:wrap;align-items:center}#qr svg{border-radius:12px;border:1px solid var(--bd);display:block}.price{font-size:32px;font-weight:750;letter-spacing:-.02em}
+.tag.ok{background:var(--okbg);color:var(--ok)}.tag.bad{background:var(--dgbg);color:var(--dg)}.steps{margin:10px 0 0;padding-left:18px;color:var(--mu);font-size:13px}.steps li{margin:5px 0}.sep{height:1px;background:var(--bd);margin:16px 0}
+.tb{width:100%;border-collapse:collapse}.tb th,.tb td{text-align:left;padding:8px;border-bottom:1px solid var(--bd);font-size:13px}.tb th{color:var(--mu);font-weight:600}
+@media(max-width:900px){.g2{grid-template-columns:1fr}}
+@media(max-width:1100px){.g3{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.shell{flex-direction:column}.sidebar{width:auto;height:auto;position:static;flex-direction:row;align-items:center;padding:10px;overflow-x:auto}.brand{padding:0 8px 0 0}.brand small,.sbfoot{display:none}.nav{flex-direction:row}.nav button{white-space:nowrap}.main{padding:16px}.g3{grid-template-columns:1fr}}
+#player{position:fixed;top:0;left:0;right:0;bottom:0;display:none;overflow:hidden;cursor:none}
+#player .s{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4vw;opacity:0;transition:opacity .6s}
+#player .s.show{opacity:1}
+#player .t{font-size:7vw;font-weight:800;line-height:1.1;margin:0 0 2vw}#player .b{font-size:3.4vw;white-space:pre-wrap;margin:0}#player .c{font-size:16vw;font-weight:800}
+#player .s>img,#player .s>video,#player .s>iframe{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;border:0}
+#player .id{position:absolute;right:1vw;bottom:1vw;font-size:1vw;opacity:.3;color:#fff;z-index:5}
+</style></head><body>
+<div class="shell" id="admin">
+ <aside class="sidebar">
+  <div class="brand"><div class="logo">&#9654;</div><div><b>Signage</b><small>Control Center</small></div></div>
+  <nav class="nav" id="nav">
+   <button data-v="dash" class="on"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Dashboard</button>
+   <button data-v="screens"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Screens</button>
+   <button data-v="content"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 9"/></svg>Content</button>
+   <button data-v="plist"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Playlists</button>
+  <button data-v="sub"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></svg>Subscription</button><button data-v="lic" id="navLic" style="display:none"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></svg>Licenses</button></nav>
+  <div class="sbfoot">Server connected<div id="licPill" style="margin-top:4px;color:#dbe4ff;font-weight:600"></div><button id="bOut">Sign out</button></div>
+ </aside>
+ <div class="main">
+  <div class="top"><h1 id="ptitle">Dashboard</h1><div id="status">Ready</div></div>
+
+  <section class="view on" id="v-dash">
+   <div class="stats">
+    <div class="stat"><div class="ic b"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><span>Screens online</span><b id="stOn">0</b><i>of 30 screens</i></div></div>
+    <div class="stat"><div class="ic v"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></div><div><span>Saved playlists</span><b id="stPl">0</b><i>ready to reuse</i></div></div>
+    <div class="stat"><div class="ic g"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 9"/></svg></div><div><span>Media files</span><b id="stMedia">0</b><i id="stSize"></i></div></div>
+    <div class="stat"><div class="ic r"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0114 0M8.5 16a5 5 0 017 0"/><circle cx="12" cy="19" r="1"/></svg></div><div><span>Offline screens</span><b id="stOff">0</b><i>need attention</i></div></div>
+   </div>
+   <div class="g3">
+    <div class="card"><h2>Screen status</h2><div class="donutwrap">
+      <svg viewBox="0 0 100 100" width="140" height="140"><circle cx="50" cy="50" r="42" fill="none" stroke="var(--bd)" stroke-width="10"/><circle id="donutArc" cx="50" cy="50" r="42" fill="none" stroke="var(--ac)" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 263.9" transform="rotate(-90 50 50)"/><text id="donutPct" x="50" y="52" text-anchor="middle" font-size="19" font-weight="700" fill="currentColor">0%</text><text x="50" y="65" text-anchor="middle" font-size="7.5" fill="var(--mu)">Online</text></svg>
+      <div class="lg"><div><i style="background:var(--ac)"></i>Online<b id="lgOn">0</b></div><div><i style="background:var(--bd)"></i>Offline<b id="lgOff">0</b></div><div><i style="background:var(--bad)"></i>Selected<b id="stSel">0</b></div></div></div></div>
+    <div class="card"><h2>Recent activity</h2><div id="act"></div></div>
+    <div class="card"><h2>Device health by group</h2><div id="health"></div></div>
+   </div>
+  </section>
+
+  <section class="view" id="v-screens">
+   <div class="card"><div class="ch"><h2>Screens</h2><span class="mu" id="selc"></span><span class="sp"></span>
+     <button id="bAll">Select all</button><button id="bNone">Clear</button><select id="grpSel"></select><button class="d" id="bGrpDel">Delete group</button></div>
+    <div class="grid" id="grid"></div>
+    <div class="row"><input id="nm" placeholder="Screen name (single screen)" style="flex:1;min-width:150px"><input id="gp" placeholder="Group" style="width:150px"><button id="bMeta">Save</button></div></div>
+   <div class="card"><div class="ch"><h2>Controls for selected screens</h2></div>
+    <div class="row"><button id="bBlack">Blackout</button><button id="bWake">Wake</button><button id="bReload">Reload players</button><button id="bClear">Remove playlist override</button></div>
+    <div class="mu" style="margin-top:10px">TV player links: <code id="base"></code><code>tv-01</code> … <code>tv-30</code></div></div>
+  </section>
+
+  <section class="view" id="v-content">
+   <div class="card"><div class="ch"><h2>Media library</h2><span class="mu">images, video, PDF, audio</span><span class="sp"></span>
+     <input type="file" id="file" multiple hidden><button id="bMAll">Select all</button><button id="bMUnused">Select unused</button><button class="d" id="bMDel">Delete selected (0)</button><button class="p" id="bUp">Upload files</button></div>
+    <div id="dz"><div class="mu" style="text-align:center">Drag &amp; drop files here</div><div id="ups"></div><div class="lib" id="lib"></div></div></div>
+  </section>
+
+  <section class="view" id="v-plist">
+   <div class="card"><div class="ch"><h2>Playlist editor</h2><span class="sp"></span><button id="bAdd">+ Add slide</button></div>
+    <div class="row" style="margin-top:0"><select id="plSel" style="flex:1;min-width:160px"></select><button id="bLoad">Load</button><button id="bSave">Save as…</button><button class="d" id="bPlDel">Delete</button></div>
+    <div id="slides"></div>
+    <div class="row"><span class="mu" id="tgt"></span><button id="bChoose">Choose screens</button><span class="sp"></span><button id="bSendAll">Set as default for all</button><button class="p" id="bSend">Send to selected screens</button></div></div>
+  </section>
+  <section class="view" id="v-sub">
+   <div class="g2">
+    <div class="card"><h2>Your subscription</h2><div id="subStat" style="margin-bottom:14px"></div>
+     <div class="row"><span class="mu">Server ID</span><input id="sidBox" readonly style="width:150px;font-family:monospace"><button id="bCopySid">Copy</button></div>
+     <div class="sep"></div><h2>Activate license key</h2>
+     <textarea id="licKey" placeholder="Paste the license key from your provider here"></textarea>
+     <div class="row"><button class="p" id="bAct">Activate</button><span id="licMsg" class="mu"></span></div></div>
+    <div class="card" id="qrCard"><h2>Renew with KHQR</h2><div class="qrwrap"><div id="qr"></div><div><div class="price" id="price"></div><div class="mu" id="planTxt"></div>
+     <ol class="steps"><li>Scan the code with any Bakong or KHQR banking app.</li><li>Send the payment screenshot and your Server ID to <b id="contactTxt"></b>.</li><li>Paste the license key you receive and press Activate.</li></ol></div></div></div>
+   </div>
+  </section>
+  <section class="view" id="v-lic">
+   <div class="card"><h2>Approve a payment</h2>
+    <div class="row"><input id="lcName" placeholder="Customer name" style="flex:1;min-width:150px"><input id="lcSid" placeholder="Server ID (XXXXX-XXXXX)" style="width:200px"><input id="lcMonths" type="number" min="1" value="3" style="width:80px" title="Months"><button class="p" id="bIssue">Approve &amp; generate key</button></div>
+    <textarea id="lcKey" readonly placeholder="The license key appears here. Send it to the customer."></textarea>
+    <div class="row"><button id="bCopyKey">Copy key</button><span class="mu" id="lcMsg"></span></div></div>
+   <div class="card"><h2>Issued licenses</h2><div id="lcList"></div></div>
+  </section>
+ </div>
+</div>
+<script src="/qr.js"></script>
+<div id="player"><div class="id" id="pid"></div></div>
+
+<script>
+const N=30,pad=n=>('0'+n).slice(-2),ids=[...Array(N)].map((_,i)=>'tv-'+pad(i+1)),$=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const route=()=>location.hash.slice(1)||(location.pathname.match(/tv-\d\d/)||[''])[0],isPlayer=()=>/^tv-\d\d$/.test(route());
+let S={cfg:{slides:[]},screens:{},media:{},playlists:{}},beats={},sel=new Set(),draft=null,PW=localStorage.getItem('pw')||'';
+const DEF=[{type:'text',title:'Welcome',body:'Open the control panel to edit this playlist.',bg:'#0b3d91',fg:'#fff',dur:8}];
+const kind=m=>{const t=(m&&m.type)||'';return t.startsWith('image')?'image':t.startsWith('video')?'video':t==='application/pdf'?'pdf':t.startsWith('audio')?'audio':'file'};
+
+window.onerror=function(m){var e=document.getElementById('pid');if(e)e.textContent=route()+' ERROR: '+m};
+/* ================= PLAYER ================= */
+let pTimer,pKey='',pIdx=0,layers=[],lastReload;
+function startPlayer(){
+  $('#admin').style.display='none';$('#player').style.display='block';$('#pid').textContent=route();document.title=route();
+  const beat=()=>fetch('/api/beat/'+route(),{method:'POST'}).catch(()=>{});beat();setInterval(beat,30000);
+  document.addEventListener('click',()=>{document.fullscreenElement||(function(){var d=document.documentElement;d.requestFullscreen&&d.requestFullscreen().catch(function(){})})()});
+  const es=new EventSource('/api/events');es.addEventListener('state',e=>{S=JSON.parse(e.data);play()});
+}
+function slides(){const s=S.screens[route()]||{};if(S.lic&&S.lic.locked)return'expired';if(s.blackout)return'black';return (s.slides&&s.slides.length)?s.slides:(S.cfg.slides&&S.cfg.slides.length)?S.cfg.slides:DEF}
+function play(){
+  const sc=S.screens[route()]||{};
+  if(lastReload!==undefined&&sc.reload&&sc.reload!==lastReload)return location.reload();lastReload=sc.reload||0;
+  const sl=slides(),key=JSON.stringify(sl)+JSON.stringify(S.media);if(key===pKey)return;pKey=key;clearTimeout(pTimer);
+  const P=$('#player');P.querySelectorAll('.s').forEach(x=>x.remove());
+  if(sl==='black'){P.style.background='#000';return}
+  if(sl==='expired'){P.style.background='#0f1b4c';var ex=document.createElement('div');ex.className='s show';ex.style.color='#fff';ex.innerHTML='<h1 class="t">Subscription expired</h1><p class="b">Please contact your provider to renew.</p>';P.appendChild(ex);return}
+  pIdx=0;
+  const next=()=>{const s=sl[pIdx%sl.length];pIdx++;show(s,next)};next();
+}
+function show(s,next){
+  const P=$('#player'),el=document.createElement('div');el.className='s';el.style.background=s.bg||'#000';el.style.color=s.fg||'#fff';
+  const m=S.media[s.file],url='/media/'+s.file;let wait=(s.dur>0?s.dur:8)*1000,video=null;
+  if(s.type==='clock'){const d=new Date();el.innerHTML='<div class="c">'+d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'</div><p class="b">'+d.toLocaleDateString([],{weekday:'long',day:'numeric',month:'long'})+'</p>'}
+  else if(s.type==='media'&&m){const k=kind(m);
+    if(k==='image')el.innerHTML=`<img src="${url}" style="object-fit:${s.fit||'contain'}">`;
+    else if(k==='video'){el.innerHTML=`<video src="${url}" autoplay muted playsinline style="object-fit:${s.fit||'contain'}"></video>`;video=el.firstChild;wait=s.dur>0?wait:0}
+    else if(k==='pdf')el.innerHTML=`<iframe src="${url}#toolbar=0&navpanes=0"></iframe>`;
+    else el.innerHTML=`<p class="b">${esc(m.name)}</p>`}
+  else if(s.type==='url')el.innerHTML=`<iframe src="${esc(s.url||'about:blank')}"></iframe>`;
+  else el.innerHTML='<h1 class="t">'+esc(s.title||'')+'</h1><p class="b">'+esc(s.body||'')+'</p>';
+  P.appendChild(el);requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('show')));
+  const old=layers.splice(0);setTimeout(()=>old.forEach(o=>o.remove()),700);layers.push(el);
+  let done=false;const go=()=>{if(!done){done=true;next()}};
+  if(video){video.onended=go;video.onerror=()=>setTimeout(go,2000);if(video.play){var pr=video.play();if(pr&&pr.catch)pr.catch(function(){})}pTimer=setTimeout(go,3600e3)}
+  else pTimer=setTimeout(go,Math.max(2000,wait));
+}
+
+window.addEventListener('hashchange',()=>location.reload());
+if(isPlayer())startPlayer();
+</script>
+<script>
+/* ================= ADMIN ================= */
+const api=(p,o={})=>fetch(p,{...o,headers:{...(o.headers||{}),'x-admin':PW,'Content-Type':'application/json'}});
+async function login(){
+  for(;;){
+    if(PW&&(await api('/api/login',{method:'POST'})).ok)return;
+    PW=prompt('Admin password')||'';if(!PW&&!confirm('Retry?'))return;localStorage.setItem('pw',PW);
+  }
+}
+async function pushState(){await api('/api/state',{method:'POST',body:JSON.stringify({cfg:S.cfg,screens:S.screens,playlists:S.playlists})})}
+function setScreens(fn,msg){if(!sel.size)return alert('Select screens first.');sel.forEach(id=>{S.screens[id]={...(S.screens[id]||{}),...fn(id)}});pushState();$('#status').textContent=msg+' ('+sel.size+' screens)';renderGrid()}
+function renderGrid(){
+  const now=Date.now();let on=0;
+  $('#grid').innerHTML=ids.map(id=>{const s=S.screens[id]||{},o=beats[id]&&now-beats[id]<90000;on+=o?1:0;
+    return`<div class="tv ${sel.has(id)?'sel':''} ${o?'on':''}" data-id="${id}"><div class="tvh"><span class="dot"></span><span class="tvn">${esc(s.name||id.toUpperCase())}</span></div><div class="tvm">${esc(s.group||'No group')}${s.blackout?'<span class="tag">off</span>':''}${s.slides?'<span class="tag">custom</span>':''}</div></div>`}).join('');
+  $('#selc').textContent=sel.size+' selected';$('#stOn').textContent=on;$('#stSel').textContent=sel.size;
+  var off=N-on,C=263.9;$('#stOff').textContent=off;$('#lgOn').textContent=on;$('#lgOff').textContent=off;$('#donutPct').textContent=Math.round(on/N*100)+'%';$('#donutArc').setAttribute('stroke-dasharray',(C*on/N)+' '+C);
+  var gr={};ids.forEach(function(id){var k=(S.screens[id]||{}).group||'No group';gr[k]=gr[k]||{t:0,o:0};gr[k].t++;if(beats[id]&&now-beats[id]<90000)gr[k].o++});
+  $('#health').innerHTML=Object.keys(gr).map(function(k){var g=gr[k];return'<div class="hr"><span title="'+esc(k)+'">'+esc(k)+'</span><div class="hb"><i style="width:'+(g.o/g.t*100)+'%"></i></div><em>'+g.o+'/'+g.t+'</em></div>'}).join('');
+  $('#tgt').textContent=sel.size?('Sending to '+sel.size+' screen'+(sel.size>1?'s':'')):'No screens selected';
+  const g=[...new Set(Object.values(S.screens).map(s=>s.group).filter(Boolean))],c=$('#grpSel').value;
+  $('#grpSel').innerHTML='<option value="">Select group…</option>'+g.map(x=>`<option>${esc(x)}</option>`).join('');$('#grpSel').value=c;
+}
+function renderPl(){
+  const c=$('#plSel').value,n=Object.keys(S.playlists||{});$('#stPl').textContent=n.length;
+  $('#plSel').innerHTML='<option value="">Saved playlists…</option>'+n.map(x=>`<option>${esc(x)}</option>`).join('');$('#plSel').value=n.includes(c)?c:'';
+}
+function renderLib(){chk.forEach(function(f){if(!S.media[f])chk.delete(f)});var ks=Object.keys(S.media),tot=0;ks.forEach(function(k){tot+=S.media[k].size||0});$('#stMedia').textContent=ks.length;$('#stSize').textContent=(tot/1048576).toFixed(1)+' MB used';
+  $('#lib').innerHTML=Object.entries(S.media).map(([f,m])=>{const k=kind(m),u='/media/'+f;
+    const th=k==='image'?`<img src="${u}">`:k==='video'?`<video src="${u}#t=0.5" muted preload="metadata"></video>`:`<b>${k.toUpperCase()}</b>`;
+    return`<div class="m"><label class="ckl"><input type="checkbox" data-ck="${f}" ${chk.has(f)?'checked':''}> Select</label><div class="th">${th}</div><span title="${esc(m.name)}">${esc(m.name)}</span><span class="mu">${(m.size/1048576).toFixed(1)} MB</span><button class="d" data-del="${f}">Delete</button></div>`}).join('')||'<span class="mu">No files yet.</span>';updDel();
+}
+function renderSlides(){
+  const opts=Object.entries(S.media).map(([f,m])=>[f,m.name]);
+  $('#slides').innerHTML=draft.map((s,i)=>`<div class="slide" data-i="${i}">
+   <select data-k="type">${['text','media','url','clock'].map(t=>`<option value="${t}" ${s.type===t?'selected':''}>${{text:'Text',media:'Media file',url:'Web page',clock:'Clock'}[t]}</option>`).join('')}</select>
+   <input data-k="dur" type="number" min="0" value="${s.dur||0}" title="Seconds (0 = full video length)" placeholder="Seconds">
+   ${s.type==='media'?`<select class="full" data-k="file"><option value="">Choose file…</option>${opts.map(([f,n])=>`<option value="${f}" ${s.file===f?'selected':''}>${esc(n)}</option>`).join('')}</select>
+     <select data-k="fit"><option value="contain" ${s.fit!=='cover'?'selected':''}>Fit (letterbox)</option><option value="cover" ${s.fit==='cover'?'selected':''}>Fill (crop)</option></select><input type="color" data-k="bg" value="${s.bg||'#000000'}">`:''}
+   ${s.type==='url'?`<input class="full" data-k="url" placeholder="https://… (site must allow embedding)" value="${esc(s.url||'')}">`:''}
+   ${s.type==='text'?`<input class="full" data-k="title" placeholder="Title" value="${esc(s.title||'')}"><textarea class="full" data-k="body" placeholder="Message">${esc(s.body||'')}</textarea><input type="color" data-k="bg" value="${s.bg||'#000000'}"><input type="color" data-k="fg" value="${s.fg||'#ffffff'}">`:''}
+   <div class="full row"><button data-a="up">↑</button><button data-a="dn">↓</button><button class="d" data-a="rm">Remove</button></div></div>`).join('');
+}
+function upload(f){
+  const row=document.createElement('div');row.innerHTML=`<div class="mu">${esc(f.name)}</div><div class="bar"><i></i></div>`;$('#ups').appendChild(row);
+  return new Promise(ok=>{const x=new XMLHttpRequest();x.open('POST','/api/upload?name='+encodeURIComponent(f.name));x.setRequestHeader('x-admin',PW);
+    x.upload.onprogress=e=>row.querySelector('i').style.width=(e.loaded/e.total*100)+'%';
+    x.onload=()=>{row.remove();ok()};x.onerror=()=>{row.textContent='Failed: '+f.name;ok()};x.send(f)});
+}
+async function pollBeats(){try{const r=await(await fetch('/api/state')).json();beats=r.beats||{};renderGrid()}catch{}}
+var acts=[],chk=new Set();
+function updDel(){var b=$('#bMDel');if(b)b.textContent='Delete selected ('+chk.size+')'}
+function usedFiles(){var u={};function add(a){(a||[]).forEach(function(x){if(x&&x.file)u[x.file]=1})}add(S.cfg.slides);Object.keys(S.screens).forEach(function(k){add(S.screens[k].slides)});Object.keys(S.playlists||{}).forEach(function(k){add(S.playlists[k])});add(draft);return u}
+function ago(t){var m=Math.floor((Date.now()-t)/60000);return m<1?'just now':m+' min ago'}
+function renderAct(){$('#act').innerHTML=acts.length?acts.slice(0,7).map(function(a){return'<div class="ai"><span class="ad"></span><span>'+esc(a.m)+'</span><i>'+ago(a.t)+'</i></div>'}).join(''):'<div class="mu">No activity yet this session.</div>'}
+var TITLES={dash:'Dashboard',screens:'Screens',content:'Content',plist:'Playlists',sub:'Subscription',lic:'Licenses'};var L=null,cur='dash';
+function view(v){if(L&&L.enabled&&!L.valid)v='sub';cur=v;if(v==='lic')loadIssued();document.querySelectorAll('.view').forEach(function(x){x.classList.toggle('on',x.id==='v-'+v)});document.querySelectorAll('#nav button').forEach(function(b){b.classList.toggle('on',b.dataset.v===v)});$('#ptitle').textContent=TITLES[v]}
+function fdate(t){return new Date(t).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'})}
+function renderSub(){if(!L)return;var st;
+ if(!L.enabled)st='<span class="tag ok">'+(L.vendor?'Vendor mode':'No license needed')+'</span> '+(L.vendor?'Licensing is off on this computer. Use Licenses to approve customers.':'Licensing is not enabled on this server.');
+ else if(L.valid)st='<span class="tag ok">'+(L.trial?'Free trial':'Active')+'</span> '+(L.name?esc(L.name)+' &middot; ':'')+'expires '+fdate(L.exp)+' <b>('+L.daysLeft+' days left)</b>';
+ else st='<span class="tag bad">'+(L.exp?'Expired':'Not activated')+'</span> '+(L.exp?'Expired on '+fdate(L.exp)+'. ':'')+'Renew below to unlock the dashboard.'+(L.exp?' Screens keep playing for 7 days after expiry.':'');
+ $('#subStat').innerHTML=st;$('#sidBox').value=L.sid;$('#qrCard').style.display=L.enabled?'':'none';
+ $('#licPill').textContent=!L.enabled?'':(L.valid?L.daysLeft+' days left':'Subscription expired');
+ $('#price').textContent=(L.currency==='USD'?'$':'')+L.amount+(L.currency==='USD'?'':' '+L.currency);$('#planTxt').textContent=L.plan;$('#contactTxt').textContent=L.contact||'your provider';
+ $('#qr').innerHTML=L.khqr?QR.svg(L.khqr,210):'<div class="mu">Payment details are not set in license-config.json</div>'}
+async function loadLic(){try{L=await(await fetch('/api/license')).json()}catch(e){return}
+ $('#navLic').style.display=L.vendor?'':'none';renderSub();view(cur)}
+async function loadIssued(){var r=await api('/api/vendor/list');if(!r.ok)return;var a=await r.json();
+ $('#lcList').innerHTML=a.length?'<table class="tb"><tr><th>Customer</th><th>Server ID</th><th>Issued</th><th>Expires</th></tr>'+a.map(function(x){return'<tr><td>'+esc(x.name||'-')+'</td><td><code>'+esc(x.sid)+'</code></td><td>'+fdate(x.iat)+'</td><td>'+fdate(x.exp)+'</td></tr>'}).join('')+'</table>':'<div class="mu">No licenses issued yet.</div>'}
+function copyEl(el){el.select();try{document.execCommand('copy')}catch(e){}}
+async function startAdmin(){
+  renderAct();setInterval(renderAct,30000);
+  new MutationObserver(function(){var m=$('#status').textContent;if(m&&m!=='Ready'){acts.unshift({m:m,t:Date.now()});renderAct()}}).observe($('#status'),{childList:true});
+  $('#nav').onclick=function(e){var b=e.target.closest('button');if(b)view(b.dataset.v)};
+  $('#bChoose').onclick=function(){view('screens')};
+  $('#bOut').onclick=function(){localStorage.removeItem('pw');location.reload()};
+  $('#base').textContent=location.href.split('#')[0];
+  await login();loadLic();setInterval(loadLic,300000);
+  const es=new EventSource('/api/events');es.addEventListener('state',e=>{S=JSON.parse(e.data);if(!draft){draft=JSON.parse(JSON.stringify(S.cfg.slides?.length?S.cfg.slides:DEF))}renderGrid();renderLib();renderPl();renderSlides()});
+  setInterval(pollBeats,10000);pollBeats();
+  $('#grid').onclick=e=>{const t=e.target.closest('.tv');if(!t)return;const id=t.dataset.id;sel.has(id)?sel.delete(id):sel.add(id);if(sel.size===1){const s=S.screens[id]||{};$('#nm').value=s.name||'';$('#gp').value=s.group||''}renderGrid()};
+  $('#bAll').onclick=()=>{ids.forEach(i=>sel.add(i));renderGrid()};$('#bNone').onclick=()=>{sel.clear();renderGrid()};
+  $('#bGrpDel').onclick=function(){var g=$('#grpSel').value;if(!g)return alert('Choose a group in the dropdown first.');
+    var n=ids.filter(function(i){return(S.screens[i]||{}).group===g});
+    if(!confirm('Delete group "'+g+'"?\n\nThe '+n.length+' screen(s) stay and simply become "No group".'))return;
+    n.forEach(function(i){S.screens[i].group=''});pushState();$('#grpSel').value='';$('#status').textContent='Group "'+g+'" deleted';renderGrid()};
+  $('#grpSel').onchange=e=>{if(!e.target.value)return;sel.clear();ids.forEach(i=>(S.screens[i]||{}).group===e.target.value&&sel.add(i));renderGrid()};
+  $('#bMeta').onclick=()=>setScreens(()=>{const o={group:$('#gp').value.trim()};if(sel.size===1)o.name=$('#nm').value.trim();return o},'Saved');
+  $('#bUp').onclick=()=>$('#file').click();
+  var dz=$('#dz');dz.ondragover=function(e){e.preventDefault();dz.classList.add('drag')};dz.ondragleave=function(){dz.classList.remove('drag')};dz.ondrop=async function(e){e.preventDefault();dz.classList.remove('drag');for(const f of e.dataTransfer.files)await upload(f)};
+  $('#file').onchange=async e=>{for(const f of e.target.files)await upload(f);e.target.value=''};
+  $('#lib').onchange=function(e){var f=e.target.dataset.ck;if(!f)return;e.target.checked?chk.add(f):chk.delete(f);updDel()};
+  $('#bMAll').onclick=function(){chk=new Set(Object.keys(S.media));renderLib()};
+  $('#bMUnused').onclick=function(){var u=usedFiles();chk=new Set(Object.keys(S.media).filter(function(f){return!u[f]}));renderLib()};
+  $('#bMDel').onclick=async function(){if(!chk.size)return alert('Select files first.');var u=usedFiles(),inUse=[...chk].filter(function(f){return u[f]}).length;
+    if(!confirm('Permanently delete '+chk.size+' file(s)?'+(inUse?'\n\n'+inUse+' of them are used in a playlist and those slides will go blank.':'')))return;
+    await api('/api/media-delete',{method:'POST',body:JSON.stringify({files:[...chk]})});chk.clear();$('#status').textContent='Deleted files'};
+  $('#lib').onclick=async e=>{const f=e.target.dataset.del;if(f&&confirm('Delete file?'))await api('/api/media/'+f,{method:'DELETE'})};
+  $('#bAdd').onclick=()=>{draft.push({type:'text',title:'New slide',body:'',bg:'#1f2937',fg:'#ffffff',dur:8});renderSlides()};
+  $('#slides').oninput=e=>{const r=e.target.closest('.slide');if(r&&e.target.dataset.k){const k=e.target.dataset.k;draft[r.dataset.i][k]=k==='dur'?+e.target.value:e.target.value}};
+  $('#slides').onchange=e=>{if(['type','file'].includes(e.target.dataset.k))renderSlides()};
+  $('#slides').onclick=e=>{const a=e.target.dataset.a;if(!a)return;const i=+e.target.closest('.slide').dataset.i;
+    if(a==='rm')draft.splice(i,1);if(a==='up'&&i>0)[draft[i-1],draft[i]]=[draft[i],draft[i-1]];if(a==='dn'&&i<draft.length-1)[draft[i+1],draft[i]]=[draft[i],draft[i+1]];renderSlides()};
+  const cl=()=>JSON.parse(JSON.stringify(draft));
+  $('#bSave').onclick=()=>{const n=(prompt('Playlist name',$('#plSel').value||'')||'').trim();if(!n)return;
+    if(S.playlists[n]&&!confirm('Overwrite "'+n+'"?'))return;S.playlists[n]=cl();pushState();$('#plSel').value=n;$('#status').textContent='Saved "'+n+'"'};
+  $('#bLoad').onclick=()=>{const n=$('#plSel').value;if(!n)return;draft=JSON.parse(JSON.stringify(S.playlists[n]));renderSlides();$('#status').textContent='Loaded "'+n+'"'};
+  $('#bPlDel').onclick=()=>{const n=$('#plSel').value;if(n&&confirm('Delete "'+n+'"?')){delete S.playlists[n];pushState()}};
+  $('#bSend').onclick=()=>setScreens(()=>({slides:cl(),blackout:false}),'Sent');
+  $('#bSendAll').onclick=()=>{S.cfg={slides:cl()};pushState();$('#status').textContent='Default updated'};
+  $('#bClear').onclick=()=>setScreens(()=>({slides:null}),'Override removed');
+  $('#bBlack').onclick=()=>setScreens(()=>({blackout:true}),'Blackout');
+  $('#bWake').onclick=()=>setScreens(()=>({blackout:false}),'Awake');
+  $('#bReload').onclick=()=>setScreens(()=>({reload:Date.now()}),'Reload sent');
+  $('#bCopySid').onclick=function(){copyEl($('#sidBox'))};$('#bCopyKey').onclick=function(){copyEl($('#lcKey'))};
+  $('#bAct').onclick=async function(){var k=$('#licKey').value.trim(),m=$('#licMsg');if(!k)return;var r=await api('/api/license',{method:'POST',body:JSON.stringify({key:k})}),j=await r.json();
+    if(!r.ok){m.textContent=j.error||'Failed';m.style.color='var(--dg)';return}m.textContent='Activated. Thank you!';m.style.color='var(--ok)';$('#licKey').value='';await loadLic();$('#status').textContent='License activated'};
+  $('#bIssue').onclick=async function(){var m=$('#lcMsg');var r=await api('/api/vendor/issue',{method:'POST',body:JSON.stringify({name:$('#lcName').value,sid:$('#lcSid').value.trim(),months:+$('#lcMonths').value})}),j=await r.json();
+    if(!r.ok){m.textContent=j.error||'Failed';m.style.color='var(--dg)';return}$('#lcKey').value=j.key;m.textContent='Valid until '+fdate(j.exp)+'. Copy the key and send it to the customer.';m.style.color='var(--ok)';loadIssued()};
+}
+if(!isPlayer())startAdmin();
+</script></body></html>
