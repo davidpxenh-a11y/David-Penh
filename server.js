@@ -3,6 +3,7 @@ const http=require('http'),fs=require('fs'),path=require('path'),crypto=require(
 const PORT=process.env.PORT||3000, PASS=process.env.ADMIN_PASSWORD||'admin';
 const DATA=path.join(__dirname,'data'), MEDIA=path.join(DATA,'media'), SF=path.join(DATA,'state.json');
 fs.mkdirSync(MEDIA,{recursive:true});
+const WEB=fs.existsSync(path.join(__dirname,'public','index.html'))?path.join(__dirname,'public'):__dirname; // works with or without a public folder
 let S={cfg:{slides:[]},screens:{},media:{},playlists:{}};
 try{S={...S,...JSON.parse(fs.readFileSync(SF))}}catch{}
 const save=()=>fs.writeFile(SF,JSON.stringify(S),()=>{});
@@ -54,9 +55,9 @@ function sendFile(req,res,file,type){
 http.createServer(async(req,res)=>{
   const u=new URL(req.url,'http://x'), p=u.pathname;
   try{
-    if(p==='/qr.js')return sendFile(req,res,path.join(__dirname,'public/qr.js'),'text/javascript');
+    if(p==='/qr.js')return sendFile(req,res,path.join(WEB,'qr.js'),'text/javascript');
     if(p==='/api/license'&&req.method==='GET')return json(res,200,{...licInfo(),khqr:khqr()});
-    if(p==='/'||p==='/index.html'||/^\/tv-\d\d\/?$/.test(p))return sendFile(req,res,path.join(__dirname,'public/index.html'),'text/html; charset=utf-8');
+    if(p==='/'||p==='/index.html'||/^\/tv-\d\d\/?$/.test(p))return sendFile(req,res,path.join(WEB,'index.html'),'text/html; charset=utf-8');
     if(p.startsWith('/media/')){const f=path.basename(p);return sendFile(req,res,path.join(MEDIA,f),MIME[path.extname(f).toLowerCase()]||'application/octet-stream')}
     if(p==='/api/events'){
       res.writeHead(200,{'Content-Type':'text/event-stream','Cache-Control':'no-cache',Connection:'keep-alive'});
